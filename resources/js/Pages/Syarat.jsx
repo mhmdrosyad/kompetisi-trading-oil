@@ -4,7 +4,7 @@ export default function Syarat() {
     return (
         <GuestLayout>
             <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-                <article className="rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-lg sm:p-6">
+                <div className="">
                     {/* <span className="inline-block rounded bg-blue-600 p-2 text-white">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@ export default function Syarat() {
                         </svg>
                     </span> */}
 
-                    <h3 className="mt-0.5 text-lg font-bold text-xl text-gray-900">
+                    <h3 className="text-center mt-0.5 text-lg font-bold text-xl md:text-3xl text-gray-900">
                         🏆 RULES KOMPETISI DEMO TRADING OIL 🛢
                     </h3>
 
@@ -149,7 +149,7 @@ export default function Syarat() {
                             </div>
                         </div>
                     </div>
-                </article>
+                </div>
             </div>
         </GuestLayout>
     );

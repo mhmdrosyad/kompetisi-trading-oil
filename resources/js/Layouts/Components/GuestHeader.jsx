@@ -7,10 +7,12 @@ export const GuestHeader = () => {
 
     // Replace javascript:void(0) paths with your paths
     const navigation = [
-        { title: "Alur", path: "javascript:void(0)" },
-        { title: "Syarat", path: "/syarat" },
-        { title: "FAQ", path: "javascript:void(0)" },
-        { title: "Pemenang", path: "javascript:void(0)" },
+        { title: "Home", path: "/" },
+        { title: "Alur", path: "/alur" },
+        { title: "Aturan", path: "/syarat" },
+        { title: "FAQ", path: "/faqs" },
+        { title: "Pemenang", path: "/pemenang" },
+        { title: "Kontak", path: "/contact" },
     ];
 
     return (

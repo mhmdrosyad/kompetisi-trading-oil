@@ -52,7 +52,7 @@ export default function Finish() {
                             <div className="flex justify-center mt-6">
                                 <Link
                                     href={route("dashboard")}
-                                    className="px-5 py-3 text-white duration-150 bg-indigo-600 rounded-full hover:bg-indigo-500 active:bg-indigo-700 flex items-center"
+                                    className="px-5 py-3 text-white duration-150 bg-green-500 rounded-full hover:bg-green-400 active:bg-green-600 flex items-center"
                                 >
                                     <svg
                                         width="16"

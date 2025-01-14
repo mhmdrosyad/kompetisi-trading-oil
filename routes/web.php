@@ -16,6 +16,10 @@ use Inertia\Inertia;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/syarat', [HomeController::class, 'syarat'])->name('syarat');
+Route::get('/alur', [HomeController::class, 'alur'])->name('alur');
+Route::get('/pemenang', [HomeController::class, 'pemenang'])->name('pemenang');
+Route::get('/faqs', [HomeController::class, 'faq'])->name('faq');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

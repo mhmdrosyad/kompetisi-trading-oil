@@ -30,9 +30,9 @@ export const Step = ({ current }) => {
                             <div
                                 className={`w-8 h-8 rounded-full border-2 flex-none flex items-center justify-center ${
                                     steps.currentStep > idx + 1
-                                        ? "bg-indigo-600 border-indigo-600"
+                                        ? "bg-green-500 border-green-500"
                                         : "" || steps.currentStep == idx + 1
-                                        ? "border-indigo-600"
+                                        ? "border-green-500"
                                         : ""
                                 }`}
                             >
@@ -41,7 +41,7 @@ export const Step = ({ current }) => {
                                         steps.currentStep > idx + 1
                                             ? "hidden"
                                             : "" || steps.currentStep == idx + 1
-                                            ? "text-indigo-600"
+                                            ? "text-green-500"
                                             : ""
                                     }`}
                                 >
@@ -71,7 +71,7 @@ export const Step = ({ current }) => {
                                     idx + 1 == steps.stepsItems.length
                                         ? "hidden"
                                         : "" || steps.currentStep > idx + 1
-                                        ? "border-indigo-600"
+                                        ? "border-green-500"
                                         : ""
                                 }`}
                             />
@@ -80,7 +80,7 @@ export const Step = ({ current }) => {
                             <h3
                                 className={`text-sm ${
                                     steps.currentStep == idx + 1
-                                        ? "text-indigo-600"
+                                        ? "text-green-500"
                                         : ""
                                 } whitespace-nowrap`}
                             >
@@ -92,7 +92,7 @@ export const Step = ({ current }) => {
                                 idx + 1 == steps.stepsItems.length
                                     ? "hidden"
                                     : "" || steps.currentStep > idx + 1
-                                    ? "border-indigo-600"
+                                    ? "border-green-500"
                                     : ""
                             }`}
                         />

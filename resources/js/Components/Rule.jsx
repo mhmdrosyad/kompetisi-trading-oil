@@ -1,6 +1,9 @@
 export const Rule = () => {
-
     const tableItems = [
+        {
+            name: "Modal awal hanya diperbolehkan $5000",
+            status: "Diskualifikasi",
+        },
         {
             name: "Open Posisi (OP/entry) hanya di pair Oil (CLR.isf)",
             status: "Diskualifikasi",
@@ -22,11 +25,18 @@ export const Rule = () => {
             status: "Diskualifikasi",
         },
         {
+            name: "Jurnal wajib diisi setiap kali posisi ditutup dan harus sesuai aturan",
+            status: "Diskualifikasi",
+        },
+        {
             name: "Wajib Clear Posisi pada saat kompetisi berakhir (tidak ada posisi floating)",
             status: "Diskualifikasi",
         },
-    ]
-
+        {
+            name: "Dilarang membuat dua akun untuk kompetisi, memanipulasi laporan, dll.",
+            status: "Diskualifikasi",
+        },
+    ];
 
     return (
         <div>
@@ -40,22 +50,30 @@ export const Rule = () => {
                         </tr>
                     </thead>
                     <tbody className="text-gray-600 divide-y">
-                        {
-                            tableItems.map((item, idx) => (
-                                <tr key={idx}>
-                                    <td className="pr-6 py-4 whitespace-nowrap">{idx+1}</td>
-                                    <td className="pr-6 py-4 whitespace-nowrap">{item.name}</td>
-                                    <td className="pr-6 py-4 whitespace-nowrap">
-                                        <span className={`px-3 py-2 rounded-full font-semibold text-xs ${item.status == "Diskualifikasi" ? "text-red-600 bg-red-50" : ""}`}>
-                                            {item.status}
-                                        </span>
-                                    </td>
-                                </tr>
-                            ))
-                        }
+                        {tableItems.map((item, idx) => (
+                            <tr key={idx}>
+                                <td className="pr-6 py-4 whitespace-nowrap">
+                                    {idx + 1}
+                                </td>
+                                <td className="pr-6 py-4 whitespace-nowrap">
+                                    {item.name}
+                                </td>
+                                <td className="pr-6 py-4 whitespace-nowrap">
+                                    <span
+                                        className={`px-3 py-2 rounded-full font-semibold text-xs ${
+                                            item.status == "Diskualifikasi"
+                                                ? "text-red-600 bg-red-50"
+                                                : ""
+                                        }`}
+                                    >
+                                        {item.status}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
         </div>
-    )
-}
+    );
+};

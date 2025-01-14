@@ -1,5 +1,5 @@
 export default function PrimaryButton({
-    className = '',
+    className = "",
     disabled,
     children,
     ...props
@@ -8,8 +8,8 @@ export default function PrimaryButton({
         <button
             {...props}
             className={
-                `px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150 ${
-                    disabled && 'opacity-25'
+                `px-4 py-2 text-white font-medium bg-green-500 hover:bg-green-400 active:bg-green-500 rounded-lg duration-150 ${
+                    disabled && "opacity-25"
                 } ` + className
             }
             disabled={disabled}

@@ -173,14 +173,14 @@ export default function Index({ auth }) {
                                 {!finishJournal || !finishJournal.completed ? (
                                     <button
                                         onClick={handleConfirmation}
-                                        className="px-5 py-3 text-white duration-150 bg-indigo-600 rounded-lg hover:bg-indigo-500 active:bg-indigo-700"
+                                        className="px-5 py-3 text-white duration-150 bg-green-500 rounded-lg hover:bg-green-400 active:bg-green-600"
                                     >
                                         Selanjutnya
                                     </button>
                                 ) : (
                                     <Link
                                         href={route("images.index")}
-                                        className="px-5 py-3 text-white duration-150 bg-indigo-600 rounded-lg hover:bg-indigo-500 active:bg-indigo-700"
+                                        className="px-5 py-3 text-white duration-150 bg-green-500 rounded-lg hover:bg-green-400 active:bg-green-600"
                                     >
                                         Selanjutnya
                                     </Link>

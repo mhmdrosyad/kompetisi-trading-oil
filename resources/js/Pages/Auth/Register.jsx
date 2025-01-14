@@ -144,7 +144,6 @@ export default function Register() {
                                         value={data.name}
                                         className="mt-1 block w-full"
                                         autoComplete="name"
-                                        isFocused={true}
                                         onChange={(e) =>
                                             setData("name", e.target.value)
                                         }
@@ -393,20 +392,20 @@ export default function Register() {
                                     <p className="text-sm text-gray-500">
                                         Dengan membuat akun, Anda telah
                                         menyetujui
-                                        <a
-                                            href="#"
+                                        <Link
+                                            href={route("syarat")}
                                             className="text-gray-700 underline"
                                         >
                                             {" "}
-                                            ketentuan kami.
-                                        </a>
+                                            aturan kami.
+                                        </Link>
                                     </p>
                                 </div>
 
                                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                                     <PrimaryButton
                                         disabled={processing}
-                                        className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
+                                        className="inline-block shrink-0 rounded-md border border-green-500 bg-green-500 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring active:text-green-500"
                                     >
                                         Daftar Sekarang
                                     </PrimaryButton>
