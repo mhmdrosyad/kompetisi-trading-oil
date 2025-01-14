@@ -7,25 +7,30 @@ export const GuestHeader = () => {
 
     // Replace javascript:void(0) paths with your paths
     const navigation = [
-        { title: "Home", path: "/" },
-        { title: "Alur", path: "/alur" },
-        { title: "Aturan", path: "/syarat" },
-        { title: "FAQ", path: "/faqs" },
-        { title: "Pemenang", path: "/pemenang" },
-        { title: "Kontak", path: "/contact" },
+        {
+            title: "Home",
+            path: "https://ptntc.com/kompetisi-demo-trading-oil/",
+        },
+        // { title: "Alur", path: "/alur" },
+        {
+            title: "Aturan",
+            path: "https://ptntc.com/aturan-kompetisi-demo-trading-oil/",
+        },
+        // { title: "FAQ", path: "/faqs" },
+        // { title: "Pemenang", path: "/pemenang" },
     ];
 
     return (
         <nav className="bg-white border-b w-full md:static md:text-sm">
             <div className="items-center px-4 mx-auto md:flex md:px-12">
                 <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                    <Link href={route("home")}>
+                    <a href="https://ptntc.com/kompetisi-demo-trading-oil/">
                         <ApplicationLogo
                             width={100}
                             height={50}
                             alt="Kompetisi Demo Trading"
                         />
-                    </Link>
+                    </a>
                     <div className="md:hidden">
                         <button
                             className="text-gray-500 hover:text-gray-800"
@@ -75,9 +80,9 @@ export const GuestHeader = () => {
                                     key={idx}
                                     className="text-gray-700 hover:text-green-600"
                                 >
-                                    <Link href={item.path} className="block">
+                                    <a href={item.path} className="block">
                                         {item.title}
-                                    </Link>
+                                    </a>
                                 </li>
                             );
                         })}
