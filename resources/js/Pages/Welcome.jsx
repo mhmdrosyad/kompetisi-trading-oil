@@ -1,4 +1,7 @@
+import Alur from "@/Components/Alur";
 import { Hero } from "@/Components/Hero";
+import HeroImage from "@/Components/HeroImage";
+import KompetisiStart from "@/Components/KompetisiStart";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link } from "@inertiajs/react";
 
@@ -16,10 +19,10 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
 
     return (
         <GuestLayout>
-            <Hero/>
-            <div className="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-                
-            </div>
+            <HeroImage />
+            <KompetisiStart />
+            <Alur />
+            <div className="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50"></div>
         </GuestLayout>
     );
 }

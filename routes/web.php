@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
@@ -14,6 +15,7 @@ use Inertia\Inertia;
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/syarat', [HomeController::class, 'syarat'])->name('syarat');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

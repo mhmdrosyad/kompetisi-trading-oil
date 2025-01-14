@@ -8,7 +8,7 @@ export const GuestHeader = () => {
     // Replace javascript:void(0) paths with your paths
     const navigation = [
         { title: "Alur", path: "javascript:void(0)" },
-        { title: "Syarat", path: "javascript:void(0)" },
+        { title: "Syarat", path: "/syarat" },
         { title: "FAQ", path: "javascript:void(0)" },
         { title: "Pemenang", path: "javascript:void(0)" },
     ];
@@ -71,11 +71,11 @@ export const GuestHeader = () => {
                             return (
                                 <li
                                     key={idx}
-                                    className="text-gray-700 hover:text-indigo-600"
+                                    className="text-gray-700 hover:text-green-600"
                                 >
-                                    <a href={item.path} className="block">
+                                    <Link href={item.path} className="block">
                                         {item.title}
-                                    </a>
+                                    </Link>
                                 </li>
                             );
                         })}
@@ -84,7 +84,7 @@ export const GuestHeader = () => {
                             <li>
                                 <Link
                                     href={route("register")}
-                                    className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none"
+                                    className="block py-3 text-center text-gray-700 hover:text-green-600 border rounded-lg md:border-none"
                                 >
                                     Daftar
                                 </Link>
@@ -92,7 +92,7 @@ export const GuestHeader = () => {
                             <li>
                                 <Link
                                     href={route("login")}
-                                    className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
+                                    className="block py-3 px-4 font-medium text-center text-white bg-green-500 hover:bg-green-400 active:bg-green-600 active:shadow-none rounded-lg shadow md:inline"
                                 >
                                     Login
                                 </Link>

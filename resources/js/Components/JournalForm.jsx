@@ -362,6 +362,25 @@ export default function JournalForm({ number }) {
                         onChange={handleSelectChange}
                     />
                 </div>
+
+                <span className="flex items-center">
+                    <span className="font-bold pr-6">Entry</span>
+                    <span className="h-px flex-1 bg-gray-300"></span>
+                </span>
+                <div
+                    className={`grid grid-cols-1 gap-4 sm:grid-cols-${formData.jmlLayer}`}
+                >
+                    {renderLayerSection()}
+                </div>
+                <span className="flex items-center">
+                    <span className="font-bold pr-6">Lot</span>
+                    <span className="h-px flex-1 bg-gray-300"></span>
+                </span>
+                <div
+                    className={`grid grid-cols-1 gap-4 sm:grid-cols-${formData.jmlLayer}`}
+                >
+                    {renderLotSection()}
+                </div>
                 <span className="flex items-center">
                     <span className="font-bold pr-6">TP dan SL</span>
                     <span className="h-px flex-1 bg-gray-300"></span>
@@ -396,24 +415,6 @@ export default function JournalForm({ number }) {
                             onChange={handleInputChange}
                         />
                     </div>
-                </div>
-                <span className="flex items-center">
-                    <span className="font-bold pr-6">Entry</span>
-                    <span className="h-px flex-1 bg-gray-300"></span>
-                </span>
-                <div
-                    className={`grid grid-cols-1 gap-4 sm:grid-cols-${formData.jmlLayer}`}
-                >
-                    {renderLayerSection()}
-                </div>
-                <span className="flex items-center">
-                    <span className="font-bold pr-6">Lot</span>
-                    <span className="h-px flex-1 bg-gray-300"></span>
-                </span>
-                <div
-                    className={`grid grid-cols-1 gap-4 sm:grid-cols-${formData.jmlLayer}`}
-                >
-                    {renderLotSection()}
                 </div>
                 <span className="flex items-center">
                     <span className="font-bold pr-6">Close</span>
