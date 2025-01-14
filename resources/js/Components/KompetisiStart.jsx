@@ -7,7 +7,7 @@ export default function KompetisiStart() {
                 <div className="w-full grid gap-5 grid-cols-1 sm:grid-cols-4">
                     <div className="flex flex-row justify-between p-8 border-b sm:flex-col items-center sm:justify-center text-center sm:border-b-0 sm:border-r">
                         <h3 className="font-semibold">Durasi</h3>
-                        <span className="text-3xl font-bold">1 bulan</span>
+                        <span className="text-3xl font-bold">3 minggu</span>
                     </div>
                     <div className="flex sm:col-span-2 flex-row justify-between sm:justify-center p-8 border-b sm:flex-col items-center text-center sm:border-b-0 sm:border-r">
                         <h3 className="hidden sm:flex font-semibold mb-1">

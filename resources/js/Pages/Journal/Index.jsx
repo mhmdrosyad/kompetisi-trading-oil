@@ -12,6 +12,7 @@ export default function Index({ auth }) {
         const profitLoss = parseFloat(journal.profit_loss) || 0;
         return total + profitLoss;
     }, 0);
+    const totalProfitLossPrecentage = (totalProfitLossMember / 5000) * 100;
     const formatProfitLoss = (totalProfitLoss) => {
         // Format dengan pemisah ribuan
         const formattedAmount = totalProfitLoss.toLocaleString();
@@ -110,7 +111,8 @@ export default function Index({ auth }) {
                                         <dd className="text-gray-700 sm:col-span-2">
                                             {formatProfitLoss(
                                                 totalProfitLossMember
-                                            )}
+                                            )}{" "}
+                                            ({totalProfitLossPrecentage}%)
                                         </dd>
                                     </div>
                                 </dl>

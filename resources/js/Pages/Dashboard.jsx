@@ -42,10 +42,11 @@ export default function Dashboard({ auth }) {
                                 Mulai Kompetisi Demo Trading Oil🚀
                             </h2>
 
-                            <Countdown targetDate="2025-01-01T00:00:00Z" />
+                            <Countdown targetDate="2025-02-01T00:00:00Z" />
                             <img
-                                className="hidden md:block absolute bottom-0 right-0"
-                                src="https://my.octafxidn.site/_scripts/react/assets/coin-wide-BbJzrCMF.webp"
+                                width={245}
+                                className="hidden md:block absolute -bottom-10 right-0"
+                                src="/images/gf1.png"
                             />
                         </div>
                     </div>
