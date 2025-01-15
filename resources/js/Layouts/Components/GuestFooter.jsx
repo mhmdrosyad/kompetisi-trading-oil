@@ -11,16 +11,8 @@ export const GuestFooter = () => {
             name: "Akademi Trading Oil",
         },
         {
-            href: "/",
+            href: "https://ptntc.com/shop",
             name: "Produk",
-        },
-        {
-            href: "/",
-            name: "About",
-        },
-        {
-            href: "/",
-            name: "Kontak",
         },
     ];
 
