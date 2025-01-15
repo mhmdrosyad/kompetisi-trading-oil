@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/journal', [JournalController::class, 'index'])->name('journal.index')->middleware('track.progress');
+    Route::get('/journal', [JournalController::class, 'index'])->name('journal.index')->middleware(['track.progress', 'date.start:2025-02-1']);
     Route::post('/journal', [JournalController::class, 'store'])->name('journal.store');
 
     Route::get('/upload-images', [UserImageController::class, 'index'])->name('images.index')->middleware('track.progress');

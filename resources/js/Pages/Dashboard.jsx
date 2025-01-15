@@ -91,7 +91,7 @@ export default function Dashboard({ auth }) {
                                 Mulai Kompetisi Demo Trading Oil🚀
                             </h2>
 
-                            <Countdown targetDate="2025-01-01T00:00:00Z" />
+                            <Countdown targetDate="2025-02-01T00:00:00Z" />
                             <img
                                 width={245}
                                 className="hidden md:block absolute -bottom-10 right-0"

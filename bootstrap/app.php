@@ -21,6 +21,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
             'track.progress' => \App\Http\Middleware\TrackUserProgress::class,
+            'date.range' => \App\Http\Middleware\DateRangeMiddleware::class,
+            'date.start' => \App\Http\Middleware\DateStartMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
