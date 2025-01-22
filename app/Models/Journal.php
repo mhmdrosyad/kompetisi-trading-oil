@@ -23,4 +23,9 @@ class Journal extends Model
     {
         return $this->hasMany(Layer::class);
     }
+
+    public function journalCorrections()
+    {
+        return $this->hasMany(JournalCorrection::class);
+    }
 }

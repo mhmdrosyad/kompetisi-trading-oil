@@ -91,7 +91,10 @@ export default function Dashboard({ auth }) {
                                 Mulai Kompetisi Demo Trading Oil🚀
                             </h2>
 
-                            <Countdown targetDate="2025-02-01T00:00:00Z" />
+                            <Countdown
+                                step={currentStep}
+                                targetDate="2025-02-01T00:00:00Z"
+                            />
                             <img
                                 width={245}
                                 className="hidden md:block absolute -bottom-10 right-0"
@@ -140,9 +143,18 @@ export default function Dashboard({ auth }) {
                     </div>
                     <div className="mt-6 overflow-hidden bg-white shadow-sm sm:rounded-xl">
                         <div className="px-10 py-8 text-gray-900">
-                            <h2 className="text-xl font-bold sm:text-2xl mb-3">
-                                Produk Kami
-                            </h2>
+                            <div className="flex gap-2 items-center mb-4">
+                                <h2 className="text-xl font-bold sm:text-2xl">
+                                    Produk Kami
+                                </h2>
+                                <a
+                                    href="https://ptntc.com/shop"
+                                    target="_blank"
+                                    className="py-1 px-3 rounded-full text-sm bg-green-100 text-green-500"
+                                >
+                                    Lihat Lainya
+                                </a>
+                            </div>
                             <div>
                                 <ProductList products={products} />
                             </div>

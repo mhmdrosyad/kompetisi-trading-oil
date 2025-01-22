@@ -3,6 +3,8 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JournalController;
+use App\Http\Controllers\JournalCorrectionController;
+use App\Http\Controllers\JuryController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -35,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/permissions', PermissionController::class);
     Route::resource('roles', RoleController::class)->except('show');
     Route::resource('/users', UserController::class);
+    Route::resource('/juries', JuryController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -46,6 +49,16 @@ Route::middleware('auth')->group(function () {
     Route::post('/upload-images', [UserImageController::class, 'upload'])->name('images.upload');
 
     Route::get('/finish', [DashboardController::class, 'finish'])->name('finish')->middleware('track.progress');
+
+    
+    Route::post('/journal/{journalId}/correction', [JournalCorrectionController::class, 'storeOrUpdate'])
+        ->name('journal.correction.storeOrUpdate');
+    Route::post('/journal/{id}/disqualify', [JournalCorrectionController::class, 'disqualify'])
+        ->name('journal.correction.disqualify');
+    Route::post('/journal/{id}/undo-disqualification', [JournalCorrectionController::class, 'undoDisqualification'])
+        ->name('journal.correction.undoDisqualify');
+    Route::post('/journal/{id}/update-rank', [JournalCorrectionController::class, 'updateRank'])
+        ->name('journal.correction.updateRank');
 
 });
 

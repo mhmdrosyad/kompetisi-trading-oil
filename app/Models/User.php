@@ -22,6 +22,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_disqualified',
+        'disqualification_reason',
+        'is_corrected',
+        'custom_rank',
     ];
 
     /**

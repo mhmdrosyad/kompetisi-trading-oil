@@ -2,17 +2,40 @@ import { useState, useEffect } from "react";
 
 export default function InputTime({ label, name, id, value, onChange }) {
     const [time, setTime] = useState(value || "00:00");
+    const [isTimeSupported, setIsTimeSupported] = useState(true);
 
-    // Update state waktu jika prop value berubah
+    // Cek dukungan input time
     useEffect(() => {
-        setTime(value);
+        const input = document.createElement("input");
+        input.setAttribute("type", "time");
+        setIsTimeSupported(input.type === "time");
+        console.log(isTimeSupported);
+    }, []);
+
+    // Update waktu jika prop value berubah
+    useEffect(() => {
+        setTime(value || "00:00");
     }, [value]);
 
+    // Handle perubahan waktu
     const handleChange = (event) => {
         const selectedTime = event.target.value;
         setTime(selectedTime);
         if (onChange) {
             onChange({ target: { name, value: selectedTime } });
+        }
+    };
+
+    // Format waktu untuk validasi input teks
+    const handleTextChange = (event) => {
+        let input = event.target.value.replace(/[^0-9]/g, ""); // Hanya angka
+        if (input.length > 4) input = input.slice(0, 4); // Maksimal 4 digit
+        if (input.length >= 3) {
+            input = input.slice(0, 2) + ":" + input.slice(2); // Tambahkan ':'
+        }
+        setTime(input);
+        if (onChange) {
+            onChange({ target: { name, value: input } });
         }
     };
 
@@ -39,15 +62,30 @@ export default function InputTime({ label, name, id, value, onChange }) {
                         />
                     </svg>
                 </div>
-                <input
-                    type="time"
-                    id={id}
-                    name={name}
-                    className="bg-white border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    value={time} // Menggunakan state untuk nilai input
-                    onChange={handleChange} // Menangani perubahan nilai input
-                    required
-                />
+                {isTimeSupported ? (
+                    // Input time untuk browser yang mendukung
+                    <input
+                        type="time"
+                        id={id}
+                        name={name}
+                        className="bg-white border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        value={time}
+                        onChange={handleChange}
+                        required
+                    />
+                ) : (
+                    // Fallback input teks untuk browser yang tidak mendukung
+                    <input
+                        type="text"
+                        id={id}
+                        name={name}
+                        className="bg-white border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="HH:mm"
+                        value={time}
+                        onChange={handleTextChange}
+                        required
+                    />
+                )}
             </div>
         </div>
     );

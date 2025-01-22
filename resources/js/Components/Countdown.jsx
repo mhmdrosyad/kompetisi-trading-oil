@@ -1,9 +1,8 @@
 import { Link } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
 
-const Countdown = ({ targetDate }) => {
+const Countdown = ({ targetDate, step }) => {
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(targetDate));
-
     useEffect(() => {
         const interval = setInterval(() => {
             setTimeLeft(calculateTimeLeft(targetDate));
@@ -47,7 +46,7 @@ const Countdown = ({ targetDate }) => {
                     href={route("journal.index")}
                     className="px-5 py-3 text-white duration-150 bg-green-500 rounded-full hover:bg-green-400 active:bg-green-600"
                 >
-                    Mulai Sekarang
+                    {step > 2 ? "Lanjutkan Kompetisi" : "Mulai Sekarang"}
                 </Link>
             </div>
         );

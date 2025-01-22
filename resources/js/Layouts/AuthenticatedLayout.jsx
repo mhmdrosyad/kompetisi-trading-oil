@@ -57,6 +57,14 @@ export default function AuthenticatedLayout({ header, children }) {
                                         Users
                                     </NavLink>
                                 )}
+                                {hasAnyPermission(["jury index"]) && (
+                                    <NavLink
+                                        href={route("juries.index")}
+                                        active={route().current("juries*")}
+                                    >
+                                        Penilaian
+                                    </NavLink>
+                                )}
                             </div>
                         </div>
 

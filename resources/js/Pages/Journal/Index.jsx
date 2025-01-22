@@ -1,5 +1,6 @@
 import JournalExist from "@/Components/JournalExist";
 import JournalForm from "@/Components/JournalForm";
+import PanduanJurnal from "@/Components/PanduanJurnal";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router, usePage } from "@inertiajs/react";
 import Swal from "sweetalert2";
@@ -12,7 +13,9 @@ export default function Index({ auth }) {
         const profitLoss = parseFloat(journal.profit_loss) || 0;
         return total + profitLoss;
     }, 0);
-    const totalProfitLossPrecentage = (totalProfitLossMember / 5000) * 100;
+    const totalProfitLossPrecentage = Math.round(
+        (totalProfitLossMember / 5000) * 100
+    );
     const formatProfitLoss = (totalProfitLoss) => {
         // Format dengan pemisah ribuan
         const formattedAmount = totalProfitLoss.toLocaleString();
@@ -60,9 +63,26 @@ export default function Index({ auth }) {
                                 Isi jurnal sesuai aturan
                             </h2>
                             <p className="mb-3">
-                                Jika belum mengerti silahkan lihat tutorial di
-                                link ini.
+                                Jika belum mengerti silahkan lihat tutorial di{" "}
+                                <a
+                                    className="text-green-500 hover:text-green-400"
+                                    target="_blank"
+                                    href="https://ptntc.com/cara-isi-jurnal-kompetisi-demo-trading-oil/"
+                                >
+                                    link ini
+                                </a>{" "}
+                                atau lihat video di{" "}
+                                <Link
+                                    className="text-green-500 hover:text-green-400"
+                                    href={route("dashboard")}
+                                >
+                                    Dasboard
+                                </Link>
+                                .
                             </p>
+                            <div className="mb-3">
+                                <PanduanJurnal />
+                            </div>
                             <div className="flow-root rounded-lg border border-gray-100 py-3 shadow-sm">
                                 <dl className="-my-3 divide-y divide-gray-100 text-sm">
                                     <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
@@ -120,6 +140,7 @@ export default function Index({ auth }) {
                             {journals?.length > 0 &&
                                 journals.map((journal, index) => (
                                     <JournalExist
+                                        key={journal.id || index}
                                         index={index}
                                         journal={journal}
                                     />

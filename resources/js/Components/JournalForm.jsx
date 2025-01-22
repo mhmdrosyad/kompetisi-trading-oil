@@ -82,10 +82,6 @@ export default function JournalForm({ number }) {
                         ? (closeValue - layerValue) * (lot * 1000)
                         : (layerValue - closeValue) * (lot * 1000); // 1 lot = 100 unit
                 totalProfitLoss += profitLoss;
-            } else {
-                console.log(
-                    `Layer ${i} tidak dihitung karena close = 0 atau data tidak lengkap!`
-                );
             }
         }
 
