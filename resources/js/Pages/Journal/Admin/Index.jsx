@@ -13,7 +13,15 @@ export default function Index({ auth }) {
             id: "index", // Tambahkan ID untuk nomor urut
             header: "Peringkat", // Header untuk kolom nomor urut
             cell: ({ row }) => {
-                return row.original.rank ? row.original.rank : row.index + 1;
+                const rank = row.original.rank
+                    ? row.original.rank
+                    : row.index + 1;
+
+                return (
+                    <div className="flex items-center justify-center">
+                        <span className="ml-2">{rank}</span>{" "}
+                    </div>
+                );
             },
         },
         {

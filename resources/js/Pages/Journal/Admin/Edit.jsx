@@ -369,36 +369,57 @@ export default function Edit({ auth }) {
                         </div>
                     </div>
                 </div>
-                <div className="mt-6 py-6 rounded-lg bg-white shadow">
-                    <div className="px-4 text-gray-600 md:px-8">
-                        <div className="flex flex-col sm:flex-row gap-2 items-center justify-between text-sm text-gray-600 font-medium">
-                            {prevUser ? (
+                {Boolean(!user.is_disqualified) ? (
+                    <div className="mt-6 py-6 rounded-lg bg-white shadow">
+                        <div className="px-4 text-gray-600 md:px-8">
+                            <div className="flex flex-col sm:flex-row gap-2 items-center justify-between text-sm text-gray-600 font-medium">
+                                {prevUser ? (
+                                    <Link
+                                        href={route(
+                                            "juries.edit",
+                                            `${prevUser}`
+                                        )}
+                                        className="px-4 py-2 border rounded-lg duration-150 hover:bg-gray-50 inline-flex items-center gap-2"
+                                    >
+                                        <ArrowLeftIcon className="size-4" />
+                                        Koreksi Peringkat Sebelumnya
+                                    </Link>
+                                ) : null}
                                 <Link
-                                    href={route("juries.edit", `${prevUser}`)}
-                                    className="px-4 py-2 border rounded-lg duration-150 hover:bg-gray-50 inline-flex items-center gap-2"
+                                    className="bg-green-500 hover:bg-green-400 p-3 rounded-lg"
+                                    href={route("juries.index")}
                                 >
-                                    <ArrowLeftIcon className="size-4" />
-                                    Koreksi Peringkat Sebelumnya
+                                    <HomeIcon className="size-4 text-white" />
                                 </Link>
-                            ) : null}
-                            <Link
-                                className="bg-green-500 hover:bg-green-400 p-3 rounded-lg"
-                                href={route("juries.index")}
-                            >
-                                <HomeIcon className="size-4 text-white" />
-                            </Link>
-                            {nextUser ? (
-                                <Link
-                                    href={route("juries.edit", `${nextUser}`)}
-                                    className="px-4 py-2 border rounded-lg duration-150 hover:bg-gray-50 inline-flex items-center gap-2"
-                                >
-                                    Koreksi Peringkat Selanjutnya
-                                    <ArrowRightIcon className="size-4" />
-                                </Link>
-                            ) : null}
+                                {nextUser ? (
+                                    <Link
+                                        href={route(
+                                            "juries.edit",
+                                            `${nextUser}`
+                                        )}
+                                        className="px-4 py-2 border rounded-lg duration-150 hover:bg-gray-50 inline-flex items-center gap-2"
+                                    >
+                                        Koreksi Peringkat Selanjutnya
+                                        <ArrowRightIcon className="size-4" />
+                                    </Link>
+                                ) : null}
+                            </div>
                         </div>
                     </div>
-                </div>
+                ) : (
+                    <div className="mt-6 py-6 rounded-lg bg-white shadow">
+                        <div className="px-4 text-gray-600 md:px-8">
+                            <div className="flex flex-col sm:flex-row gap-2 items-center justify-center text-sm text-gray-600 font-medium">
+                                <Link
+                                    className="bg-green-500 hover:bg-green-400 p-3 rounded-lg"
+                                    href={route("juries.index")}
+                                >
+                                    <HomeIcon className="size-4 text-white" />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </Container>
         </AuthenticatedLayout>
     );

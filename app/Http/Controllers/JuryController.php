@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Facades\DB;
@@ -81,7 +80,6 @@ class JuryController extends Controller implements HasMiddleware
             ->groupBy('users.id')
             ->where('is_disqualified', true) // Ambil pengguna yang diskualifikasi
             ->get();
-
         return inertia('Journal/Admin/Index', ['users' => $sortedUsers, 'disqualifiedUsers' => $disqualifiedUsers]);
     }
 
@@ -181,4 +179,6 @@ class JuryController extends Controller implements HasMiddleware
             'nextUser' => $nextUser,
         ]);
     }
+
+    
 }

@@ -1,3 +1,4 @@
+import { CountdownEnd } from "@/Components/CountdownEnd";
 import JournalExist from "@/Components/JournalExist";
 import JournalForm from "@/Components/JournalForm";
 import PanduanJurnal from "@/Components/PanduanJurnal";
@@ -6,7 +7,8 @@ import { Head, Link, router, usePage } from "@inertiajs/react";
 import Swal from "sweetalert2";
 
 export default function Index({ auth }) {
-    const { journals, finishJournal, profile } = usePage().props;
+    const { journals, finishJournal, profile, isCompetitionEnded, targetDate } =
+        usePage().props;
     const numberJurnal = journals.length + 1;
     const totalProfitLossMember = journals?.reduce((total, journal) => {
         // Pastikan profit_loss ada dan berupa angka
@@ -80,6 +82,7 @@ export default function Index({ auth }) {
                                 </Link>
                                 .
                             </p>
+
                             <div className="mb-3">
                                 <PanduanJurnal />
                             </div>
@@ -135,6 +138,21 @@ export default function Index({ auth }) {
                                             ({totalProfitLossPrecentage}%)
                                         </dd>
                                     </div>
+                                    <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
+                                        <dt className="font-medium text-gray-900">
+                                            Waktu Kompetisi
+                                        </dt>
+                                        <dd className="text-gray-700 font-bold sm:col-span-2">
+                                            {targetDate ? (
+                                                <CountdownEnd
+                                                    isCompetitionEnded={
+                                                        isCompetitionEnded
+                                                    }
+                                                    targetDate={targetDate}
+                                                />
+                                            ) : null}
+                                        </dd>
+                                    </div>
                                 </dl>
                             </div>
                             {journals?.length > 0 &&
@@ -145,16 +163,63 @@ export default function Index({ auth }) {
                                         journal={journal}
                                     />
                                 ))}
-                            {!finishJournal || !finishJournal.completed ? (
-                                <JournalForm number={journals.length + 1} />
+                            {!isCompetitionEnded ? (
+                                !finishJournal || !finishJournal.completed ? (
+                                    <JournalForm number={journals.length + 1} />
+                                ) : (
+                                    <div className="w-full mt-4">
+                                        <div className="flex justify-between p-4 rounded-md bg-green-50 border border-green-300">
+                                            <div className="flex items-start gap-3 w-full">
+                                                <div>
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className="h-6 w-6 text-green-500"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                        strokeWidth={2}
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                                <div className="flex-1 self-center">
+                                                    <span className="text-green-600 font-medium">
+                                                        Anda telah selesai
+                                                    </span>
+                                                    <div className="text-green-600">
+                                                        <p className="mt-2 sm:text-sm">
+                                                            Anda telah
+                                                            menyelesaikan
+                                                            pengisian jurnal.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <button className="">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 20 20"
+                                                        fill="currentColor"
+                                                        className="w-5 h-5 text-green-600"
+                                                    >
+                                                        <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
                             ) : (
                                 <div className="w-full mt-4">
-                                    <div className="flex justify-between p-4 rounded-md bg-green-50 border border-green-300">
+                                    <div className="flex justify-between p-4 rounded-md bg-red-50 border border-red-300">
                                         <div className="flex items-start gap-3 w-full">
                                             <div>
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
-                                                    className="h-6 w-6 text-green-500"
+                                                    className="h-6 w-6 text-red-500"
                                                     fill="none"
                                                     viewBox="0 0 24 24"
                                                     stroke="currentColor"
@@ -163,35 +228,28 @@ export default function Index({ auth }) {
                                                     <path
                                                         strokeLinecap="round"
                                                         strokeLinejoin="round"
-                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
                                                     />
                                                 </svg>
                                             </div>
                                             <div className="flex-1 self-center">
-                                                <span className="text-green-600 font-medium">
-                                                    Anda telah selesai
+                                                <span className="text-red-600 font-medium">
+                                                    Kompetisi telah berakhir
                                                 </span>
-                                                <div className="text-green-600">
+                                                <div className="text-red-600">
                                                     <p className="mt-2 sm:text-sm">
-                                                        Anda telah menyelesaikan
-                                                        pengisian jurnal.
+                                                        Anda tidak dapat mengisi
+                                                        jurnal lagi karena
+                                                        kompetisi telah
+                                                        berakhir.
                                                     </p>
                                                 </div>
                                             </div>
-                                            <button className="">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                    className="w-5 h-5 text-green-600"
-                                                >
-                                                    <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
-                                                </svg>
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             )}
+
                             <div className="mt-12">
                                 {!finishJournal || !finishJournal.completed ? (
                                     <button

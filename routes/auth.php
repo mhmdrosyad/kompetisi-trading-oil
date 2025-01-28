@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
-        ->name('register')->middleware('date.range:2025-01-15,2025-01-28');
+        ->name('register')->middleware('date.range:2025-01-15,2025-01-31');
 
     Route::post('register', [RegisteredUserController::class, 'store']);
 

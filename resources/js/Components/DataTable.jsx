@@ -43,7 +43,7 @@ export default function DataTable({ columns, data }) {
                                             {...{
                                                 className:
                                                     header.column.getCanSort()
-                                                        ? "cursor-pointer select-none flex min-w-[36px]"
+                                                        ? "cursor-pointer select-none flex"
                                                         : "",
                                                 onClick:
                                                     header.column.getToggleSortingHandler(),
@@ -80,7 +80,7 @@ export default function DataTable({ columns, data }) {
                                 {row.getVisibleCells().map((cell) => (
                                     <td
                                         key={cell.id}
-                                        className="px-4 py-2 border"
+                                        className="px-4 py-2 border "
                                     >
                                         {flexRender(
                                             cell.column.columnDef.cell,
@@ -146,7 +146,7 @@ export default function DataTable({ columns, data }) {
                                             className={`${
                                                 table.getState().pagination
                                                     .pageIndex === index
-                                                    ? "block size-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white"
+                                                    ? "block size-8 rounded border-green-500 bg-green-500 text-center leading-8 text-white"
                                                     : "block size-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"
                                             }`}
                                         >

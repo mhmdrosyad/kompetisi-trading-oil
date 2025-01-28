@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Journal;
+use App\Models\Setting;
 use App\Models\UserProgress;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -17,10 +19,23 @@ class JournalController extends Controller
         $finishJournal = UserProgress::where('user_id', Auth::id())->get()
             ->where('step', 'selesai_jurnal')
             ->first();
+
+        $setting = Setting::where('key', 'end_competition')->first();
+        $targetDate = $setting ? $setting->value : false;
+        $isCompetitionEnded = false;
+
+        if ($setting) {
+            $endDate = Carbon::parse($setting->value); // Ambil tanggal dari pengaturan
+            $today = Carbon::today();                 // Tanggal hari ini
+            $isCompetitionEnded = $endDate->lt($today); // `lt` = less than
+        }
+
         return Inertia::render('Journal/Index', [
             'journals' => $journals,
             'finishJournal' => $finishJournal,
-            'profile' => $profile
+            'profile' => $profile,
+            'isCompetitionEnded' => $isCompetitionEnded,
+            'targetDate' => $targetDate,
         ]);
     }
 

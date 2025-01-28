@@ -9,7 +9,6 @@ export default function InputTime({ label, name, id, value, onChange }) {
         const input = document.createElement("input");
         input.setAttribute("type", "time");
         setIsTimeSupported(input.type === "time");
-        console.log(isTimeSupported);
     }, []);
 
     // Update waktu jika prop value berubah

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use App\Models\UserImage;
 use App\Models\UserProgress;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -15,7 +17,17 @@ class UserImageController extends Controller
         $finishUpload = UserProgress::where('user_id', Auth::id())->get()
             ->where('step', 'upload_bukti')
             ->first();
-        return Inertia::render('Journal/UploadImage', ['images' => $images, 'finishUpload' => $finishUpload]);
+        $setting = Setting::where('key', 'end_competition')->first();
+
+        $isCompetitionEnded = false;
+
+        if ($setting) {
+            $endDate = Carbon::parse($setting->value); // Ambil tanggal dari pengaturan
+            $today = Carbon::today();                 // Tanggal hari ini
+            $isCompetitionEnded = $endDate->lt($today); // `lt` = less than
+        }
+    
+        return Inertia::render('Journal/UploadImage', ['images' => $images, 'finishUpload' => $finishUpload, 'isCompetitionEnded' => $isCompetitionEnded]);
     }
     public function upload(Request $request)
     {

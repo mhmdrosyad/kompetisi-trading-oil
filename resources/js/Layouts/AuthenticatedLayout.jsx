@@ -65,6 +65,30 @@ export default function AuthenticatedLayout({ header, children }) {
                                         Penilaian
                                     </NavLink>
                                 )}
+                                {hasAnyPermission(["jury index"]) && (
+                                    <NavLink
+                                        href={route("pengumuman.admin")}
+                                        active={route().current(
+                                            "pengumuman.admin*"
+                                        )}
+                                    >
+                                        Pengumuman
+                                    </NavLink>
+                                )}
+                                <NavLink
+                                    href={route("pengumuman.user")}
+                                    active={route().current("pengumuman.user")}
+                                >
+                                    Pemenang
+                                </NavLink>
+                                {hasAnyPermission(["jury index"]) && (
+                                    <NavLink
+                                        href={route("setting.index")}
+                                        active={route().current("setting*")}
+                                    >
+                                        Pengaturan
+                                    </NavLink>
+                                )}
                             </div>
                         </div>
 
@@ -196,6 +220,28 @@ export default function AuthenticatedLayout({ header, children }) {
                                 Users
                             </ResponsiveNavLink>
                         )}
+                        {hasAnyPermission(["jury index"]) && (
+                            <ResponsiveNavLink
+                                href={route("juries.index")}
+                                active={route().current("juries*")}
+                            >
+                                Penilaian
+                            </ResponsiveNavLink>
+                        )}
+                        {hasAnyPermission(["jury index"]) && (
+                            <ResponsiveNavLink
+                                href={route("pengumuman.admin")}
+                                active={route().current("pengumuman.admin*")}
+                            >
+                                Pengumuman
+                            </ResponsiveNavLink>
+                        )}
+                        <ResponsiveNavLink
+                            href={route("pengumuman.user")}
+                            active={route().current("pengumuman.user")}
+                        >
+                            Pemenang
+                        </ResponsiveNavLink>
                     </div>
 
                     <div className="border-t border-gray-200 pb-1 pt-4">
