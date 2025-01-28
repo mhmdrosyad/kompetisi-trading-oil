@@ -26,7 +26,7 @@ class PengumumanController extends Controller
 
         $emailStatus = Setting::where('key', 'email_winner_sent')->first();
         $publishStatus = Setting::where('key', 'announcement_publish')->first();
-        $publishStatus = $publishStatus->value;
+        $publishStatus = $publishStatus ? $publishStatus->value : false;
 
         return inertia('Journal/Admin/Pengumuman', ['users' => $topRankedUsers, 'emailStatus' => $emailStatus, 'publishStatus' => $publishStatus]);
     }
