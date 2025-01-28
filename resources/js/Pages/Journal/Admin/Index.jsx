@@ -5,7 +5,8 @@ import DataTable from "@/Components/DataTable";
 import Container from "@/Components/Container";
 
 export default function Index({ auth }) {
-    const { users, disqualifiedUsers } = usePage().props;
+    const { users, disqualifiedUsers, isCompetitionEnded } = usePage().props;
+    console.log(isCompetitionEnded);
     const usersArray = Object.values(users);
     const disqualifiedUsersArray = Object.values(disqualifiedUsers);
     const columns = [
@@ -19,7 +20,11 @@ export default function Index({ auth }) {
 
                 return (
                     <div className="flex items-center justify-center">
-                        <span className="ml-2">{rank}</span>{" "}
+                        {isCompetitionEnded ? (
+                            <span className="ml-2">{rank}</span>
+                        ) : (
+                            ""
+                        )}
                     </div>
                 );
             },
@@ -63,18 +68,21 @@ export default function Index({ auth }) {
         {
             id: "actions",
             header: "Aksi",
-            cell: ({ row }) => (
-                <Link
-                    href={route("juries.edit", `${row.original.id}`)} // Menggunakan ID pengguna dari data
-                    className={`inline-block rounded px-4 py-2 text-xs font-medium text-white ${
-                        row.original.is_corrected
-                            ? "bg-yellow-300 hover:bg-yellow-400"
-                            : "bg-green-500 hover:bg-green-600"
-                    }`}
-                >
-                    {row.original.is_corrected ? "Edit Koreksi" : "Koreksi"}
-                </Link>
-            ),
+            cell: ({ row }) =>
+                isCompetitionEnded ? (
+                    <Link
+                        href={route("juries.edit", `${row.original.id}`)} // Menggunakan ID pengguna dari data
+                        className={`inline-block rounded px-4 py-2 text-xs font-medium text-white ${
+                            row.original.is_corrected
+                                ? "bg-yellow-300 hover:bg-yellow-400"
+                                : "bg-green-500 hover:bg-green-600"
+                        }`}
+                    >
+                        {row.original.is_corrected ? "Edit Koreksi" : "Koreksi"}
+                    </Link>
+                ) : (
+                    "Kompetisi belum selesai."
+                ),
         },
     ];
 
@@ -151,7 +159,7 @@ export default function Index({ auth }) {
                     {usersArray.length > 0 ? (
                         <DataTable columns={columns} data={usersArray} />
                     ) : (
-                        <p>No users found.</p>
+                        <p>Belum ada user.</p>
                     )}
                 </div>
                 <div className="mt-6 p-6 rounded-lg bg-white shadow">

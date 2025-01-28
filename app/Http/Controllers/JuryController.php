@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Facades\DB;
@@ -80,7 +82,16 @@ class JuryController extends Controller implements HasMiddleware
             ->groupBy('users.id')
             ->where('is_disqualified', true) // Ambil pengguna yang diskualifikasi
             ->get();
-        return inertia('Journal/Admin/Index', ['users' => $sortedUsers, 'disqualifiedUsers' => $disqualifiedUsers]);
+
+        $setting = Setting::where('key', 'end_competition')->first();
+        $isCompetitionEnded = false;
+
+        if ($setting) {
+            $endDate = Carbon::parse($setting->value); // Ambil tanggal dari pengaturan
+            $today = Carbon::today();                 // Tanggal hari ini
+            $isCompetitionEnded = $endDate->lt($today); // `lt` = less than
+        }
+        return inertia('Journal/Admin/Index', ['users' => $sortedUsers, 'disqualifiedUsers' => $disqualifiedUsers, 'isCompetitionEnded' => $isCompetitionEnded]);
     }
 
     public function edit($userId)
