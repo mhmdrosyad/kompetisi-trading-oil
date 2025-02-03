@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-export const CountdownEnd = ({
-    isCompetitionEnded,
-    targetDate,
-    startDateProps,
-}) => {
-    const startDate = new Date(startDateProps);
+export const CountdownEnd = ({ isCompetitionEnded, targetDate }) => {
+    const startDate = new Date();
     const isDateValid = new Date() >= startDate;
     const [timeLeft, setTimeLeft] = useState(0);
     useEffect(() => {

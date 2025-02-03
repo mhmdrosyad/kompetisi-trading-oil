@@ -16,7 +16,6 @@ class DateRangeMiddleware
     public function handle(Request $request, Closure $next,  $startDate, $endDate): Response
     {
         $currentDate = now()->format('Y-m-d');
-
         if ($currentDate < $startDate || $currentDate > $endDate) {
             return to_route('login');
         }
